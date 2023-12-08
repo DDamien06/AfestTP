@@ -12,6 +12,5 @@ public class AfestTpApplication {
 		SpringApplication.run(AfestTpApplication.class, args);
 	}
 
-	Author author1 = new Author("jean","pierre");
 
 }

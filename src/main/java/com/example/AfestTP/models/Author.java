@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table
+@Table (name="authors")
 @Data
 public class Author {
 
@@ -14,15 +14,19 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long authorId;
 
+    @Column( nullable = false)
     private String authorFirstName;
 
+    @Column( nullable = false)
     private String authorLastName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> books;
 
+    public Author(){}
     public Author(String authorFirstName, String authorLastName) {
         this.authorFirstName = authorFirstName;
         this.authorLastName = authorLastName;
     }
+
 }

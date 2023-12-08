@@ -5,21 +5,25 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table
+@Table (name="books")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
 
+    @Column(name = "title", nullable = false)
+    private String Title;
+
     private Enum<BookType> bookType;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     private Author author;
 
     private int nbPages;
 
     private double price;
 
-    private boolean available=true;
+    @Column (columnDefinition = "boolean default true")
+    private Boolean available;
 }

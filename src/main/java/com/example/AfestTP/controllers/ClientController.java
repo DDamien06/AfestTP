@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -15,7 +17,7 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping
-    public Iterable<Client> getClients(){
+    public List<Client> getClients(){
         return clientService.getClients();
     }
 
