@@ -11,4 +11,4 @@ VALUES ('Laurent', 'GINA', 'laurentgina@mail.com'),
 
 INSERT INTO books (author, book_type, nb_pages, price)
 VALUES ('HUGO', 'POESIE', 262, 20),
-       ('LACKBERG', 'POLICIER', 540, 34),
+       ('LACKBERG', 'POLICIER', 540, 34);
