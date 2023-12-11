@@ -23,7 +23,7 @@ public class BookService {
     }
 
     public Book getById(Long id){
-     return bookRepository.findById(id).orElseThrow(UnknowResourceException::new);;
+     return bookRepository.findById(id).orElseThrow(UnknowResourceException::new);
     }
 
     public Book create(Book book){
@@ -34,7 +34,8 @@ public class BookService {
         Book existingBook = bookRepository.findById(book.getBookId()).orElseThrow(UnknowResourceException::new);
         return  bookRepository.save(existingBook);
     }
-    public void delete(Book book){
+    public void delete(Long id){
+        Book book = bookRepository.findById(id).orElseThrow(UnknowResourceException::new);
         if (isAvailable(book)){
             bookRepository.delete(book);
         };

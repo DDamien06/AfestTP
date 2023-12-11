@@ -35,6 +35,7 @@ public class AuthorService {
         return authorRepository.save(existingAuthor);
     }
 
+
     public void delete(Long id) {
         Author author = authorRepository.findById(id).orElseThrow(UnknowResourceException::new);
         if (isAllowToDelete(author)) {

@@ -10,7 +10,6 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long bookId;
 
     @Column(nullable = false)

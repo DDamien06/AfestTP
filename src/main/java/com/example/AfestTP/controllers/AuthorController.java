@@ -17,7 +17,7 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping
-    //@ResponseBody
+    @ResponseBody
     List<Author> getAuthors() {return this.authorService.getAll();}
 
     @GetMapping(value = "/{authorId}")
@@ -28,6 +28,12 @@ public class AuthorController {
     @ResponseStatus(HttpStatus.OK)
     void createAuthor(@RequestBody Author author) {this.authorService.create(author);}
 
+    @PutMapping()
+    @ResponseBody
+    void update(@RequestBody Author author) {this.authorService.update(author);}
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void deleteAuthor(@PathVariable Long id){this.authorService.delete(id);}
 
 }

@@ -10,7 +10,6 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long clientId;
 
     @Column(nullable = false, name="first_name")
