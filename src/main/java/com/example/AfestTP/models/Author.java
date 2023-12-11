@@ -12,12 +12,13 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (nullable = false,name="id")
     private Long authorId;
 
-    @Column( nullable = false)
+    @Column( nullable = false,name="first_name")
     private String authorFirstName;
 
-    @Column( nullable = false)
+    @Column( nullable = false,name="last_name")
     private String authorLastName;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)

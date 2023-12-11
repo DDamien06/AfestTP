@@ -3,23 +3,31 @@ package com.example.AfestTP.controllers;
 import com.example.AfestTP.models.Author;
 import com.example.AfestTP.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/authors")
 public class AuthorController {
 
     @Autowired
     private AuthorService authorService;
 
-    @RequestMapping(value="/authors", method = RequestMethod.GET)
-    @ResponseBody
-    List<Author> getAuthors() {return authorService.getAll();}
+    @GetMapping
+    //@ResponseBody
+    List<Author> getAuthors() {return this.authorService.getAll();}
 
-    @RequestMapping(value = "/authors/{authorId}",method = RequestMethod.GET)
+    @GetMapping(value = "/{authorId}")
     @ResponseBody
-    Author getAuthor(@PathVariable final Long authorId) {return  authorService.getById(authorId);}
+    Author getAuthor(@PathVariable Long authorId) {return this.authorService.getById(authorId);}
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.OK)
+    void createAuthor(@RequestBody Author author) {this.authorService.create(author);}
+
+
 
 }

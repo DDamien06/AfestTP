@@ -10,20 +10,29 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long bookId;
 
-    @Column(name = "title", nullable = false)
-    private String Title;
+    @Column(nullable = false)
+    private String title;
 
+    @Column(nullable = false, name="book_type")
     private Enum<BookType> bookType;
 
     @ManyToOne (fetch = FetchType.LAZY)
     private Author author;
 
+    @Column (nullable = false, name="nb_pages")
     private int nbPages;
 
+    @Column (nullable = false, name="price")
     private double price;
 
     @Column (columnDefinition = "boolean default true")
     private Boolean available;
+
+    @Override
+    public String toString() {
+        return author.getAuthorLastName();
+    }
 }

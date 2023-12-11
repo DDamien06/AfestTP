@@ -1,5 +1,6 @@
 package com.example.AfestTP.services;
 
+import com.example.AfestTP.exceptions.UnknowResourceException;
 import com.example.AfestTP.models.Author;
 import com.example.AfestTP.models.Book;
 import com.example.AfestTP.repositories.BookRepository;
@@ -15,20 +16,31 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    public List<Book> getAll(){return bookRepository.findAll();}
+
     public List<Book> getByAuthor(Author author){
         return author.getBooks();
     }
 
-    public Optional<Book> getById(Long id){
-     return bookRepository.findById(id);
+    public Book getById(Long id){
+     return bookRepository.findById(id).orElseThrow(UnknowResourceException::new);;
     }
 
+    public Book create(Book book){
+        return bookRepository.save(book);
+    }
+
+    public Book update(Book book){
+        Book existingBook = bookRepository.findById(book.getBookId()).orElseThrow(UnknowResourceException::new);
+        return  bookRepository.save(existingBook);
+    }
     public void delete(Book book){
-        book.getAvailable();
+        if (isAvailable(book)){
+            bookRepository.delete(book);
+        };
     }
 
-
-
-    // lister/trouver/filtrer/ajouter/updta/suppr
-    // disponible ?
+    public  boolean isAvailable(Book book){
+        return book.getAvailable();
+    }
 }
