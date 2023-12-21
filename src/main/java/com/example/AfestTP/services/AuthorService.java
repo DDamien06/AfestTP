@@ -1,16 +1,13 @@
 package com.example.AfestTP.services;
 
-import com.example.AfestTP.exceptions.UnknowResourceException;
+import com.example.AfestTP.exceptions.UnknownResourceException;
 import com.example.AfestTP.models.Author;
 import com.example.AfestTP.models.Book;
 import com.example.AfestTP.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AuthorService {
@@ -23,7 +20,7 @@ public class AuthorService {
     }
 
     public Author getById(Long id) {
-        return authorRepository.findById(id).orElseThrow(UnknowResourceException::new);
+        return authorRepository.findById(id).orElseThrow(UnknownResourceException::new);
     }
 
     public Author create(Author author) {
@@ -31,13 +28,17 @@ public class AuthorService {
     }
 
     public Author update(Author author) {
-        Author existingAuthor = authorRepository.findById(author.getAuthorId()).orElseThrow(UnknowResourceException::new);
+        Author existingAuthor = authorRepository.findById(author.getAuthorId()).orElseThrow(UnknownResourceException::new);
         return authorRepository.save(existingAuthor);
     }
 
+    public void addBook(Long authorId, Book book) {
+        Author author = authorRepository.findById(authorId).orElseThrow(UnknownResourceException::new);
+        author.getBooks().add(book);
+    }
 
     public void delete(Long id) {
-        Author author = authorRepository.findById(id).orElseThrow(UnknowResourceException::new);
+        Author author = authorRepository.findById(id).orElseThrow(UnknownResourceException::new);
         if (isAllowToDelete(author)) {
             authorRepository.delete(author);
         }
@@ -54,9 +55,6 @@ public class AuthorService {
         }
         return isAllow;
     }
-    // lister/trouver/filtrer/ajouter/updta/suppr
-    //lister livre par author
-    //
 
 
 }

@@ -1,6 +1,8 @@
 package com.example.AfestTP.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,10 +19,11 @@ public class Book {
     private String title;
 
     @Column(name="book_type")
+    @Enumerated(EnumType.ORDINAL)
     private BookType bookType;
 
     @ManyToOne (fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private Author author;
 
     @Column (nullable = false, name="nb_pages")
@@ -32,8 +35,4 @@ public class Book {
     @Column (columnDefinition = "boolean default true")
     private Boolean available;
 
-    @Override
-    public String toString() {
-        return author.getAuthorLastName();
-    }
 }

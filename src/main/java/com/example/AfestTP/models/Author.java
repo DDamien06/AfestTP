@@ -1,5 +1,8 @@
 package com.example.AfestTP.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,17 +24,20 @@ public class Author {
     @Column( nullable = false,name="last_name")
     private String authorLastName;
 
+
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Book> books;
 
     public Author(){}
+
     public Author(String authorFirstName, String authorLastName) {
         this.authorFirstName = authorFirstName;
         this.authorLastName = authorLastName;
     }
 
-   /* @Override
+    @Override
     public String toString() {
-        return authorFirstName + " "+ authorLastName;
-    }*/
+        return authorLastName;
+    }
 }

@@ -11,27 +11,37 @@ import java.util.*;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-List<String> myList = new ArrayList();
+
     @Autowired
     private BookService bookService;
 
     @GetMapping()
     @ResponseBody
-    List<Book> getBooks() {return this.bookService.getAll();}
+    List<Book> getBooks() {
+        return this.bookService.getAll();
+    }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{bookId}")
     @ResponseBody
-    Book getBook(@PathVariable Long id){return this.bookService.getById(id);}
+    Book getBook(@PathVariable Long bookId) {
+        return this.bookService.getById(bookId);
+    }
 
-    @PostMapping()
+    @PostMapping("../author/add")
     @ResponseStatus(HttpStatus.OK)
-    void createBook(@RequestBody Book book) {this.bookService.create(book);}
+    void createBook(@RequestBody Book book) {
+        this.bookService.create(book);
+    }
 
     @PutMapping()
     @ResponseBody
-    void update(@RequestBody Book book) {this.bookService.update(book);}
+    void update(@RequestBody Book book) {
+        this.bookService.update(book);
+    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void deleteBook(@PathVariable Long id){this.bookService.delete(id);}
+    void deleteBook(@PathVariable Long id) {
+        this.bookService.delete(id);
     }
+}
