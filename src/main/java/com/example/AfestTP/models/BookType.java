@@ -4,4 +4,5 @@ public enum BookType {
     FANTASIE,
     POLICIER,
     POESIE
+
 }

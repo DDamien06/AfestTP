@@ -1,5 +1,6 @@
 package com.example.AfestTP.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,10 +16,11 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, name="book_type")
-    private Enum<BookType> bookType;
+    @Column(name="book_type")
+    private BookType bookType;
 
     @ManyToOne (fetch = FetchType.LAZY)
+    @JsonIgnore
     private Author author;
 
     @Column (nullable = false, name="nb_pages")

@@ -12,6 +12,7 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long authorId;
 
     @Column( nullable = false,name="first_name")
@@ -20,7 +21,7 @@ public class Author {
     @Column( nullable = false,name="last_name")
     private String authorLastName;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> books;
 
     public Author(){}
@@ -29,4 +30,8 @@ public class Author {
         this.authorLastName = authorLastName;
     }
 
+   /* @Override
+    public String toString() {
+        return authorFirstName + " "+ authorLastName;
+    }*/
 }

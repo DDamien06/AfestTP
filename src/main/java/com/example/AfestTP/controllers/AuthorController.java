@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080", maxAge=3600)
 @RequestMapping("/authors")
 public class AuthorController {
 
@@ -22,7 +22,7 @@ public class AuthorController {
 
     @GetMapping(value = "/{authorId}")
     @ResponseBody
-    Author getAuthor(@PathVariable Long authorId) {return this.authorService.getById(authorId);}
+    Author getAuthor(@PathVariable long authorId) {return this.authorService.getById(authorId);}
 
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)

@@ -9,7 +9,7 @@ VALUES ('Laurent', 'GINA', 'laurentgina@mail.com'),
        ('Sophie', 'FONCEK', 'sophiefoncek@mail.com'),
        ('Agathe', 'FEELING', 'agathefeeling@mail.com');
 
-//INSERT INTO books (title, author, book_type, nb_pages, price)
-//VALUES ('Les Miserables','HUGO', 'POESIE', 262, 20),
-//       ('La petite fille','LACKBERG', 'POLICIER', 540, 34);
+INSERT INTO books (title, author_id, nb_pages, price)
+VALUES ('Les Miserables',1, 262, 20),
+       ('La petite fille',1, 540, 34);
 commit;
