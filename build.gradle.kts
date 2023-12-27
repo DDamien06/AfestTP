@@ -19,6 +19,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+
 }
 
 dependencies {
@@ -32,6 +33,8 @@ dependencies {
 	testImplementation("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.mockito:mockito-core:3.+")
+
 }
 
 tasks.withType<Test> {

@@ -3,6 +3,8 @@ package com.example.AfestTP;
 import com.example.AfestTP.models.Author;
 import com.example.AfestTP.models.Book;
 import com.example.AfestTP.models.BookType;
+import com.example.AfestTP.repositories.AuthorRepository;
+import com.example.AfestTP.services.AuthorService;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,14 +14,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.Duration;
 import java.time.Instant;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 @SpringBootTest
 class AfestTpApplicationTests {
 
     private Author author;
-
+    private AuthorRepository authorRepository = mock(AuthorRepository.class);
+    private AuthorService svc = mock(AuthorService.class);
     private static Instant starttime;
     private Book book;
 
@@ -63,7 +66,6 @@ class AfestTpApplicationTests {
         assertEquals("michel", book.getAuthor().getAuthorLastName());
         assertEquals(125, book.getNbPages());
         assertEquals(23, book.getPrice());
-
         book.setBookType(BookType.POESIE);
         assertEquals(
                 "POESIE",
@@ -71,9 +73,13 @@ class AfestTpApplicationTests {
                 "Le type du book n'est pas bon");
     }
 
-  /*  @Test
-    void testAuthorService(){
-        AuthorService svc=new AuthorService();
+    @Test
+    void testAuthorService() {
         assertNotNull(svc.getAll());
-    } */
+        System.out.println("get all " + svc.getAll());
+        System.out.println("par id : " + svc.getById(1L));
+
+        //assertEquals("michel",svc.getById(1L).getAuthorLastName(), "le nom n'est pas le meme");
+        //assertEquals(this.author,svc.getById(1L),"l'objet créé n'est pas bon" );
+    }
 }
