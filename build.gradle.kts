@@ -24,8 +24,12 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	testImplementation("junit:junit:4.13.1")
+	testImplementation("junit:junit:4.13.1")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("com.h2database:h2")
+	testImplementation("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

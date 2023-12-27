@@ -35,4 +35,11 @@ public class Book {
     @Column (columnDefinition = "boolean default true")
     private Boolean available;
 
+    public Book(String title, BookType bookType, Author author, int nbPages, double price) {
+        this.title = title;
+        this.bookType = bookType;
+        this.author = author;
+        this.nbPages = nbPages;
+        this.price = price;
+    }
 }
